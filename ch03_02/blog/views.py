@@ -32,7 +32,9 @@ def post_edit(request, pk):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = User.objects.get(username='admin')
+            uu = User.objects.get(username='admin')
+            uu.is_authenticated()
+            post.author = uu
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
