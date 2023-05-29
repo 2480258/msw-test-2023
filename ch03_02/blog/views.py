@@ -19,6 +19,7 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             uu = User.objects.get(username='admin')
+            uu.is_authenticated
             post.author = uu
             post.published_date = timezone.now()
             post.save()
@@ -34,7 +35,7 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             uu = User.objects.get(username='admin')
-            uu.is_authenticated()
+            uu.is_authenticated
             post.author = uu
             post.published_date = timezone.now()
             post.save()
